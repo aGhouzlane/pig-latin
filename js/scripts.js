@@ -15,14 +15,13 @@ function changeToPigLatin(text) {
 
   wordArray.forEach(element => {
 
-    // if (element[0] === vowelArray[i]) {
-    //   console.log(newtext.concat(element.slice(1, 5) + element[0] + "way"));
-    // }
-    if (getCount(element, vowelArray) == 1) {
-      console.log(newtext.concat(element.slice(1, 7) + element[0] + "ay"));
-
+    if (element[0] === 'a' || element[0] === 'e' || element[0] === 'i' || element[0] === 'u' || element[0] === 'o') {
+      console.log(newtext.concat(element.slice(1, 6) + element[0] + "way"));
     }
-    else if (getCount(element, vowelArray) == 2) {
+    else if (getCount(element) === 1) {
+      console.log(newtext.concat(element.slice(1, 7) + element[0] + "ay"));
+    }
+    else if (getCount(element) === 2) {
       console.log(newtext.concat(element.slice(2, 8) + element[0] + element[1] + "ay"));
     }
 
@@ -31,25 +30,28 @@ function changeToPigLatin(text) {
   return text;
 }
 
-function getCount(str, array) {
-
+function getCount(str) {
   let counter = 0;
-  for (let i = 0; i < array.length; i++) {
-    if (str[0] !== vowelArray[i]) {
-      counter++;
-      break;
-    }
-  }
 
-  if (str[1] !== 'a' && str[1] !== 'e' && str[1] !== 'i' && str[1] !== 'u') {
+  if (str[0] !== 'a' || str[0] !== 'e' || str[0] !== 'i' || str[0] !== 'u' || str[0] !== 'o') {
+    counter++;
+  }
+  if (str[1] !== 'a' && str[1] !== 'e' && str[1] !== 'i' && str[1] !== 'u' && str[0] !== 'o') {
     counter++;
   }
   return counter;
 }
 
-// var test1 = getCount("mmaxwell", vowelArray);
+// var test1 = getCount("maxwell");
 // console.log(test1);
 
+var quword = "maquzd";
+var newString = "";
+if (quword.includes('qu')) {
+  const startIndex = quword.indexOf('qu');
+  const endIndex = startIndex + 'qu'.length;
+  console.log(newString.concat(quword.slice(0, startIndex) + quword.slice(endIndex) + quword.slice(startIndex, endIndex)));
+}
 
 
-var test = changeToPigLatin("maxwell");
+//var test = changeToPigLatin("quoz");
